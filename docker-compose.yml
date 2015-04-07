@@ -1,0 +1,12 @@
+dockergen:
+  build: ./docker-gen
+  restart: always
+  environment:
+    - DOCKER_HOST=tcp://192.168.99.100:3376
+nginx:
+  build: ./nginx
+  restart: always
+  volumes_from:
+    - dockergen
+  ports:
+    - 80:80
